@@ -1,7 +1,0 @@
-This is a new text file
-Making a change to this file
-
-This line is added online
-This line was added online and was updated by prince
-
-Git is very interesting
