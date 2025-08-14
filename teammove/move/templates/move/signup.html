@@ -1,0 +1,38 @@
+{% extends "move/base-auth.html" %}
+{% load static %}
+
+{% block title %}Sign Up - Bloggie{% endblock %}
+
+{% block avatar %}
+<img src="{% static 'move/assets/img/person/default-avatar.webp' %}" alt="Avatar" class="auth-avatar" />
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Sign Up</h2>
+<form method="post" action="{% url 'signup' %}">
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+  {% endif %}
+  <div class="mb-3">
+    <label for="id_username" class="form-label">Username</label>
+    <input type="text" name="username" required id="id_username" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label for="id_email" class="form-label">Email address</label>
+    <input type="email" name="email" required id="id_email" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label for="id_password1" class="form-label">Password</label>
+    <input type="password" name="password1" required id="id_password1" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label for="id_password2" class="form-label">Confirm Password</label>
+    <input type="password" name="password2" required id="id_password2" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+</form>
+<div class="mt-3 text-center">
+  <a href="{% url 'login' %}">Already have an account? Login</a>
+</div>
+{% endblock %}
