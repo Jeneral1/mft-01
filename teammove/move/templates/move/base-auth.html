@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{% block title %}Auth - Bloggie{% endblock %}</title>
+    <link href="{% static 'move/assets/img/favicon.png' %}" rel="icon" />
+    <link href="{% static 'move/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="{% static 'move/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'move/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'move/assets/css/main.css' %}" rel="stylesheet" />
+    <style>
+      body {
+        background: var(--background-color, #f8f9fa);
+        min-height: 100vh;
+        font-family: 'Poppins', 'Roboto', sans-serif;
+      }
+      .auth-card {
+        max-width: 400px;
+        margin: 5vh auto;
+        border-radius: 16px;
+        box-shadow: 0 0 24px rgba(0,0,0,0.07);
+        background: #fff;
+        padding: 2.5rem 2rem;
+      }
+      .auth-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .auth-logo h1 {
+        font-size: 2rem;
+        margin: 0 0.25rem 0 0;
+        font-weight: 700;
+        color: var(--accent-color, #4154f1);
+      }
+      .auth-logo span {
+        color: var(--accent-color, #4154f1);
+        font-size: 2rem;
+        font-weight: 900;
+      }
+      .auth-avatar {
+        display: block;
+        margin: 0 auto 1rem auto;
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border: 2px solid var(--accent-color, #4154f1);
+      }
+      .form-label {
+        font-weight: 500;
+      }
+      .auth-footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: #888;
+        font-size: 0.95rem;
+      }
+    </style>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <div class="auth-card">
+      <div class="auth-logo">
+        <h1>Bloggie</h1><span>.</span>
+      </div>
+      {% block avatar %}
+      {% endblock %}
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div class="auth-footer">
+      &copy; {{ now|date:"Y" }} <strong>Bloggie</strong>. All Rights Reserved.
+    </div>
+    <script src="{% static 'move/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>
