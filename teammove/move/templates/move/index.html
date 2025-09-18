@@ -2,6 +2,38 @@
 {% load static %}
 
 {% block content %}
+  <div class="container my-4 text-end">
+    {% if user.is_authenticated %}
+      <a href="{% url 'create_post' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Create Post
+      </a>
+    {% endif %}
+  </div>
+  <!-- Exclusive Posts Section -->
+  <section id="exclusive-posts" class="section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Your Exclusive Posts</h2>
+    </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row gy-4">
+        {% for post in exclusive_posts %}
+          <div class="col-lg-4">
+            <article>
+              {% if post.pic_url %}
+                <img src="{{ post.pic_url.url }}" alt="{{ post.title }}" class="img-fluid" />
+              {% endif %}
+              <h2 class="title">{{ post.title }}</h2>
+              <p>{{ post.content|truncatewords:20 }}</p>
+              <span class="post-date">{{ post.created }}</span>
+            </article>
+          </div>
+        {% empty %}
+          <p class="text-center">No exclusive posts yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   {% comment %}Blog Hero Section{% endcomment %}
   <section id="blog-hero" class="blog-hero section">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -71,6 +103,32 @@
     </div>
   </section>
   {% comment %}/Blog Hero Section{% endcomment %}
+
+  <!-- Other Posts Section -->
+  <section id="other-posts" class="section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Posts from Others</h2>
+    </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row gy-4">
+        {% for post in other_posts %}
+          <div class="col-lg-4">
+            <article>
+              {% if post.pic_url %}
+                <img src="{{ post.pic_url.url }}" alt="{{ post.title }}" class="img-fluid" />
+              {% endif %}
+              <h2 class="title">{{ post.title }}</h2>
+              <p>{{ post.content|truncatewords:20 }}</p>
+              <span class="post-date">{{ post.created }}</span>
+              <span class="post-author">By {{ post.user_id.username }}</span>
+            </article>
+          </div>
+        {% empty %}
+          <p class="text-center">No posts from others yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
   {% comment %}Featured Posts Section{% endcomment %}
   <section id="featured-posts" class="featured-posts section">
@@ -620,7 +678,7 @@
           <div class="cta-image" data-aos="zoom-out" data-aos-delay="200">
             <img src="{% static 'move/assets/img/cta/cta-1.webp' %}" alt="" class="img-fluid" />
           </div>
-        </div>. 
+        </div>.
       </div>
     </div>
   </section>
